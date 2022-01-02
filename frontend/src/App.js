@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import { Icon } from "leaflet";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -10,8 +9,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
-import BoardModerator from "./components/BoardModerator";
-import BoardAdmin from "./components/BoardAdmin";
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
@@ -22,7 +19,6 @@ const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
-  const [activePark, setActivePark] = React.useState(null);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -60,31 +56,10 @@ const App = () => {
           MetroTracking
         </div>
         <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/Map"} className="nav-link">
-              Maps
-            </Link>
-          </li>
-          {showModeratorBoard && (
-            <li className="nav-item">
-              <Link to={"/mod"} className="nav-link">
-                Moderator Board
-              </Link>
-            </li>
-          )}
-
-          {showAdminBoard && (
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link">
-                Admin Board
-              </Link>
-            </li>
-          )}
-
           {currentUser && (
             <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
+              <Link to={"/Map"} className="nav-link">
+                Maps
               </Link>
             </li>
           )}
@@ -126,8 +101,6 @@ const App = () => {
           <Route exact path="/register" component={Register} />
           <Route exact path="/profile" component={Profile} />
           <Route path="/user" component={BoardUser} />
-          <Route path="/mod" component={BoardModerator} />
-          <Route path="/admin" component={BoardAdmin} />
         </Switch>
       </div>
 

@@ -1,7 +1,11 @@
 import React from 'react';
+import { Switch, Route } from "react-router-dom";
+
 import L from 'leaflet';
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import * as parkData from "../data/datadriver.json";
+import RoutingMachine from "./RoutingMachine";
+
 
 export const icon = new L.Icon({
     iconUrl: "/Truck.svg",
@@ -47,6 +51,9 @@ const MapComponent = (props) => {
                     </div>
                 </Popup>
             )}
+            <Switch>
+                <Route component={RoutingMachine} />
+            </Switch>
         </Map>
     );
 };
